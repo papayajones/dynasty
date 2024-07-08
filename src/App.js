@@ -3,6 +3,10 @@ import { Container, Box, Grid, List, ListItem, ListItemText, Paper, Typography, 
 import { styled } from '@mui/material/styles';
 import players from './teams.json';
 
+const StyledContainer = styled(Container)({
+  backgroundColor: '#555555',
+});
+
 const StyledListItem = styled(ListItem)(({ team }) => ({
   backgroundColor: team === 'Tim1' ? '#9900ff' :
                    team === 'Boxxy' ? '#cccccc' :
@@ -74,6 +78,9 @@ function App() {
   };
   
   const handleOrderToggle = () => {
+    if (draftCounter != 1) {
+      return;
+    }
     if (teamToggle === 'TIM') {
       setTeamToggle('RYAN');
       setAlternateTeam('TIM');
@@ -158,7 +165,7 @@ function App() {
 
 
   return (
-    <Container>
+    <StyledContainer>
       <Grid container spacing={2}>
         <Grid item xs={5}>
           <ScrollablePaper elevation={3} height={windowHeight}>
@@ -234,7 +241,7 @@ function App() {
             </ScrollablePaper>
         </Grid>
       </Grid>
-    </Container>
+    </StyledContainer>
   );
 }
 
